@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load urlify %}
+{%  load crispy_forms_tags %}
+
+{% block head_title %}{{ post.title }}|{{ block.super }}{% endblock %}
+
+{% block content %}
+    {{ comment }}
+    <div class="col-sm-6 col-sm-offset-3">
+                 <form method='POST' action=".">
+                     <h1>Confirm Delete</h1>
+                    <p>Are you sure you want to delete: "{{ comment.content }}"?</p>
+                    {% csrf_token %}
+                    <input type="submit" value="Comfirm" class="btn btn-warning">
+                    <a href="{{ comment.get_absolute_url }}" type="submit" class="btn btn-default">Cancel</a>
+                </form>
+    </div>
+            <hr/>
+{% endblock %}
